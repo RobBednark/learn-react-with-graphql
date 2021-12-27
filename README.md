@@ -8,3 +8,6 @@ https://www.apollographql.com/docs/react/get-started/
     1. npx create-react-app my-app
     1. cd my-app
     1. npm start
+1. Add Apollo client to the project per https://www.apollographql.com/docs/react/get-started/
+    1. npm install @apollo/client graphql
+
