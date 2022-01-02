@@ -12,11 +12,10 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-// Q: Where is this App() function getting called?
-function App() {
+function RobBednarkApp() {
     return (
       <div>
-        <h2>Rob Bednark: my Apollo &lt;App&gt; component</h2>
+        This is in the RobBednarkApp component
       </div>
     );
 }
@@ -27,7 +26,8 @@ function App() {
 
 render(
   <ApolloProvider client={client}>
-    <App />
+    <RobBednarkApp />
+    This is text directly within the render() function.
   </ApolloProvider>,
   document.getElementById('root')
 );
