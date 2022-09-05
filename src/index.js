@@ -1,10 +1,13 @@
 // From: https://www.apollographql.com/docs/react/get-started/
+// Original source: https://codesandbox.io/s/get-started-coinbase-client-73r10?file=/src/index.js
 import React from 'react';
 import { render } from 'react-dom';
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
+  gql,
+  useQuery
 } from "@apollo/client";
 
 const client = new ApolloClient({
@@ -12,10 +15,32 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
+function ExchangeRates() {
+  const { loading, error, data } = useQuery(gql`
+    {
+      rates(currency: "USD" {
+        currency
+        rate
+      }
+    }
+  `);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error:(</p>;
+
+  return data.rates.map(({ currency, rate }) => (
+    <div key={currency}>
+      <p>
+        {currency}: {rate}
+      </p>
+    </div>
+  ));
+  }
 function RobBednarkApp() {
     return (
       <div>
-        This is in the RobBednarkApp component
+        <p>This is in the RobBednarkApp component</p>
+        <ExchangeRates />
       </div>
     );
 }
